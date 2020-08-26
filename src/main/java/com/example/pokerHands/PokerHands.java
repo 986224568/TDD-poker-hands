@@ -35,6 +35,10 @@ public class PokerHands {
             return -1;
         }
 
+        if (getStraightValue(pokers) != -1 && getStraightValue(pokers1) != -1) {
+            return getStraightValue(pokers) > getStraightValue(pokers1) ? 1 : -1;
+        }
+
         if (getStraightValue(pokers) != -1) {
             return 1;
         } else if (getStraightValue(pokers1) != -1) {
