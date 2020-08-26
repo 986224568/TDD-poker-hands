@@ -25,6 +25,10 @@ public class PokerHands {
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
 
+        if (getFourOfKindNumber(pokers) != -1 && getFourOfKindNumber(pokers1) != -1) {
+            return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
+        }
+
         if (getFourOfKindNumber(pokers) != -1) {
             return 1;
         } else if (getFourOfKindNumber(pokers1) != -1) {
@@ -103,5 +107,4 @@ public class PokerHands {
         }
         return -1;
     }
-
 }
