@@ -19,6 +19,9 @@ public class Poker implements Comparable<Poker> {
 
     @Override
     public int compareTo(Poker poker) {
+        if (this.value == poker.value) {
+            return poker.character - this.character;
+        }
         return  poker.value - this.value;
     }
 }
