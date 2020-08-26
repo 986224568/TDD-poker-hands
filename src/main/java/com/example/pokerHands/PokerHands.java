@@ -25,6 +25,10 @@ public class PokerHands {
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
 
+        if (getThreeOfKindNumber(pokers) != -1 && getThreeOfKindNumber(pokers1) != -1) {
+            return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
+        }
+
         if (getThreeOfKindNumber(pokers) != -1) {
             return 1;
         } else if (getThreeOfKindNumber(pokers1) != -1) {
@@ -70,6 +74,17 @@ public class PokerHands {
             }
         }
         return -1;
+    }
+
+    private static int getThreeOfKindValue(List<Poker> pokers) {
+        Collections.sort(pokers);
+        for (int i = 0; i < pokers.size(); i++) {
+            if (pokers.get(i).getValue() == pokers.get(i + 1).getValue() &&
+                    pokers.get(i + 1).getValue() == pokers.get(i + 2).getValue()) {
+                return pokers.get(i).getValue();
+            }
+        }
+        return 0;
     }
 
 }
