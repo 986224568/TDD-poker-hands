@@ -4,6 +4,8 @@ import com.example.pokerHands.priorityEnum.CardEnum;
 import com.example.pokerHands.priorityEnum.CharacterEnum;
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class Poker implements Comparable<Poker> {
     private String pokerName;
@@ -23,5 +25,18 @@ public class Poker implements Comparable<Poker> {
             return poker.character - this.character;
         }
         return  poker.value - this.value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Poker poker = (Poker) o;
+        return value == poker.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

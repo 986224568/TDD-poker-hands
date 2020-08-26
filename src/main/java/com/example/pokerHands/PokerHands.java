@@ -1,10 +1,8 @@
 package com.example.pokerHands;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PokerHands {
 
@@ -27,10 +25,21 @@ public class PokerHands {
         Collections.sort(pokers1);
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
+        if (isExistPair(pokers)) {
+            return 1;
+        } else if (isExistPair(pokers1)){
+            return -1;
+        }
         if (poker1.getValue() == poker2.getValue()) {
             return poker1.getCharacter() - poker2.getCharacter();
         }
         return poker1.getValue() - poker2.getValue();
     }
+
+    private static boolean isExistPair(List<Poker> pokers) {
+        Set<Poker> pokerSet = new HashSet<>(pokers);
+        return pokerSet.size() != pokers.size();
+    }
+
 
 }
