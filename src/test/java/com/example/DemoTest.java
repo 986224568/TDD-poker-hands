@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.pokerHands.PokerHands;
 import
         org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,10 @@ public class DemoTest {
     }
 
     @Test
-    void should_return_true_with_player2_win_when_playing_porkerHands_given_2_player_cards() {
+    void should_return_true_with_player2_win_when_playing_porkerHands_compare_by_poker_value_given_2_player_cards() {
         //given
-        String[] player1 = {"H2", "D3", "S4", "C5", "H7"};
-        String[] player2 = {"HA", "S3", "D4", "S5", "D7"};
+        String[] player1 = {"2H", "3D", "4S", "5C", "7H"};
+        String[] player2 = {"AH", "3S", "4D", "5S", "7D"};
         //when
         int result = pokerHands.play(player1, player2);
         //then
