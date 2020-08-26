@@ -25,6 +25,11 @@ public class PokerHands {
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
 
+        if (getThreeOfKindNumber(pokers) != -1) {
+            return 1;
+        } else if (getThreeOfKindNumber(pokers1) != -1) {
+            return -1;
+        }
         if (getPairNumbers(pokers) > 0 && getPairNumbers(pokers1) > 0) {
             return (getPairNumbers(pokers) - getPairNumbers(pokers1)) > 0 ? 1 :
                     (getPairNumbers(pokers) == getPairNumbers(pokers1)) ?
@@ -56,5 +61,15 @@ public class PokerHands {
         return 0;
     }
 
+    private static int getThreeOfKindNumber(List<Poker> pokers) {
+        Map<Poker, Integer> map = new HashMap<>();
+        for (Poker poker : pokers) {
+            map.put(poker, map.getOrDefault(poker, 0) + 1);
+            if (map.get(poker) == 3) {
+                return poker.getValue();
+            }
+        }
+        return -1;
+    }
 
 }
