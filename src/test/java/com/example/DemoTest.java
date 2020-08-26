@@ -77,7 +77,7 @@ public class DemoTest {
         //when
         int result = pokerHands.play(player1, player2);
         //then
-        assertEquals(1, result);
+        assertEquals(2, result);
     }
 
     @Test
@@ -88,6 +88,6 @@ public class DemoTest {
         //when
         int result = pokerHands.play(player1, player2);
         //then
-        assertEquals(1, result);
+        assertEquals(2, result);
     }
 }
