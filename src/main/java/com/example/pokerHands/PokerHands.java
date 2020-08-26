@@ -35,6 +35,12 @@ public class PokerHands {
             return -1;
         }
 
+        if (getFlushValue(pokers) != -1) {
+            return 1;
+        } else if (getFlushValue(pokers1) != -1) {
+            return -1;
+        }
+
         if (getStraightValue(pokers) != -1 && getStraightValue(pokers1) != -1) {
             return getStraightValue(pokers) > getStraightValue(pokers1) ? 1 : -1;
         }
@@ -125,6 +131,19 @@ public class PokerHands {
                 return pokers.get(0).getValue();
             }
             if ((pokers.get(i).getValue() - pokers.get(i + 1).getValue()) != 1) {
+                return -1;
+            }
+        }
+        return pokers.get(0).getValue();
+    }
+
+    private static int getFlushValue(List<Poker> pokers) {
+        Collections.sort(pokers);
+        for (int i = 0; i < pokers.size(); i++) {
+            if (i == 4) {
+                return pokers.get(0).getValue();
+            }
+            if (pokers.get(i).getCharacter() != pokers.get(i + 1).getCharacter()) {
                 return -1;
             }
         }
