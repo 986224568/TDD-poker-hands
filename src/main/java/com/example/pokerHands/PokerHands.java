@@ -35,6 +35,12 @@ public class PokerHands {
             return -1;
         }
 
+        if (getStraightValue(pokers) != -1) {
+            return 1;
+        } else if (getStraightValue(pokers1) != -1) {
+            return -1;
+        }
+
         if (getThreeOfKindNumber(pokers) != -1 && getThreeOfKindNumber(pokers1) != -1) {
             return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
         }
@@ -106,5 +112,18 @@ public class PokerHands {
             }
         }
         return -1;
+    }
+
+    private static int getStraightValue(List<Poker> pokers) {
+        Collections.sort(pokers);
+        for (int i = 0; i < pokers.size(); i++) {
+            if (i == 4) {
+                return pokers.get(0).getValue();
+            }
+            if ((pokers.get(i).getValue() - pokers.get(i + 1).getValue()) != 1) {
+                return -1;
+            }
+        }
+        return pokers.get(0).getValue();
     }
 }
