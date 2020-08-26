@@ -2,8 +2,6 @@ package com.example.pokerHands;
 
 
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 public class PokerHands {
 
@@ -26,12 +24,15 @@ public class PokerHands {
         Collections.sort(pokers1);
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
-        if (isExistPair(pokers) && isExistPair(pokers1)) {
-            return getMaxPairCardValue(pokers) - getMaxPairCardValue(pokers1);
+
+        if (getPairNumbers(pokers) > 0 && getPairNumbers(pokers1) > 0) {
+            return (getPairNumbers(pokers) - getPairNumbers(pokers1)) > 0 ? 1 :
+                    (getPairNumbers(pokers) == getPairNumbers(pokers1)) ?
+                            getMaxPairCardValue(pokers) - getMaxPairCardValue(pokers1) : -1;
         }
-        if (isExistPair(pokers)) {
+        if (getPairNumbers(pokers) > 0) {
             return 1;
-        } else if (isExistPair(pokers1)){
+        } else if (getPairNumbers(pokers1) > 0) {
             return -1;
         }
         if (poker1.getValue() == poker2.getValue()) {
@@ -40,15 +41,15 @@ public class PokerHands {
         return poker1.getValue() - poker2.getValue();
     }
 
-    private static boolean isExistPair(List<Poker> pokers) {
+    private static int getPairNumbers(List<Poker> pokers) {
         Set<Poker> pokerSet = new HashSet<>(pokers);
-        return pokerSet.size() != pokers.size();
+        return pokers.size() - pokerSet.size();
     }
 
-    private static int getMaxPairCardValue (List<Poker> pokers) {
+    private static int getMaxPairCardValue(List<Poker> pokers) {
         Collections.sort(pokers);
         for (int i = 0; i < pokers.size(); i++) {
-            if (pokers.get(i).getValue() == pokers.get(i+1).getValue()) {
+            if (pokers.get(i).getValue() == pokers.get(i + 1).getValue()) {
                 return pokers.get(i).getValue();
             }
         }

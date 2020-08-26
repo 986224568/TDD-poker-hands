@@ -1,11 +1,9 @@
 package com.example;
 
 import com.example.pokerHands.PokerHands;
-import
-        org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DemoTest {
