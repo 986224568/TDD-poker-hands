@@ -35,6 +35,10 @@ public class PokerHands {
             return -1;
         }
 
+        if (getFlushValue(pokers) != -1 && getFlushValue(pokers1) != -1) {
+            return getFlushValue(pokers) > getFlushValue(pokers1) ? 1 : -1;
+        }
+
         if (getFlushValue(pokers) != -1) {
             return 1;
         } else if (getFlushValue(pokers1) != -1) {
