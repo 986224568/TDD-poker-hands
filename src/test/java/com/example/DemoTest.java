@@ -59,4 +59,15 @@ public class DemoTest {
         //then
         assertEquals(1, result);
     }
+
+    @Test
+    void should_return_true_with_player1_win_when_playing_porkerHands_compare_by_poker_value_and_character_and_pair_given_player1_has_2pair_and_player2_has_1pair() {
+        //given
+        String[] player1 = {"AS", "3D", "3S", "4C", "4H"};
+        String[] player2 = {"AH", "AD", "5D", "6S", "7D"};
+        //when
+        int result = pokerHands.play(player1, player2);
+        //then
+        assertEquals(1, result);
+    }
 }
