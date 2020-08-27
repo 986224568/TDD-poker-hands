@@ -44,6 +44,16 @@ public class PokerHands {
         result = judgeThreeOfKind(pokers, pokers1);
         if (result != null) return result;
 
+        result = judgePair(pokers, pokers1);
+        if (result != null) return result;
+
+        if (poker1.getValue() == poker2.getValue()) {
+            return poker1.getCharacter() - poker2.getCharacter();
+        }
+        return poker1.getValue() - poker2.getValue();
+    }
+
+    private Integer judgePair(List<Poker> pokers, List<Poker> pokers1) {
         if (getPairNumbers(pokers) > 0 && getPairNumbers(pokers1) > 0) {
             return (getPairNumbers(pokers) - getPairNumbers(pokers1)) > 0 ? 1 :
                     (getPairNumbers(pokers) == getPairNumbers(pokers1)) ?
@@ -54,10 +64,7 @@ public class PokerHands {
         } else if (getPairNumbers(pokers1) > 0) {
             return -1;
         }
-        if (poker1.getValue() == poker2.getValue()) {
-            return poker1.getCharacter() - poker2.getCharacter();
-        }
-        return poker1.getValue() - poker2.getValue();
+        return null;
     }
 
     private Integer judgeThreeOfKind(List<Poker> pokers, List<Poker> pokers1) {
