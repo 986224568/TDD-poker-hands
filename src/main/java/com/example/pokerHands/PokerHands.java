@@ -41,15 +41,9 @@ public class PokerHands {
         result = judgeStraight(pokers, pokers1);
         if (result != null) return result;
 
-        if (getThreeOfKindNumber(pokers) != -1 && getThreeOfKindNumber(pokers1) != -1) {
-            return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
-        }
+        result = judgeThreeOfKind(pokers, pokers1);
+        if (result != null) return result;
 
-        if (getThreeOfKindNumber(pokers) != -1) {
-            return 1;
-        } else if (getThreeOfKindNumber(pokers1) != -1) {
-            return -1;
-        }
         if (getPairNumbers(pokers) > 0 && getPairNumbers(pokers1) > 0) {
             return (getPairNumbers(pokers) - getPairNumbers(pokers1)) > 0 ? 1 :
                     (getPairNumbers(pokers) == getPairNumbers(pokers1)) ?
@@ -64,6 +58,19 @@ public class PokerHands {
             return poker1.getCharacter() - poker2.getCharacter();
         }
         return poker1.getValue() - poker2.getValue();
+    }
+
+    private Integer judgeThreeOfKind(List<Poker> pokers, List<Poker> pokers1) {
+        if (getThreeOfKindNumber(pokers) != -1 && getThreeOfKindNumber(pokers1) != -1) {
+            return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
+        }
+
+        if (getThreeOfKindNumber(pokers) != -1) {
+            return 1;
+        } else if (getThreeOfKindNumber(pokers1) != -1) {
+            return -1;
+        }
+        return null;
     }
 
     private Integer judgeStraight(List<Poker> pokers, List<Poker> pokers1) {
