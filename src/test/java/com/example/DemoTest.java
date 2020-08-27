@@ -178,4 +178,15 @@ public class DemoTest {
         //then
         assertEquals(1, result);
     }
+
+    @Test
+    void should_return_true_with_player2_win_when_playing_porkerHands_compare_by_poker_value_and_character_and_pair_and_three_of_kind_and_fourOfKind_and_full_house_straightFlush_given_both_straightFlush() {
+        //given
+        String[] player1 = {"3C", "4C", "5C", "6C", "7C"};
+        String[] player2 = {"5H", "6H", "7H", "8H", "9H"};
+        //when
+        int result = pokerHands.play(player1, player2);
+        //then
+        assertEquals(2, result);
+    }
 }
