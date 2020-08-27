@@ -35,6 +35,10 @@ public class PokerHands {
             return -1;
         }
 
+        if (getFullHouse(pokers) != -1 && getFullHouse(pokers1) != -1) {
+            return getFullHouse(pokers) > getFullHouse(pokers1) ? 1 : -1;
+        }
+
         if (getFullHouse(pokers) != -1) {
             return 1;
         } else if (getFullHouse(pokers1) != -1) {
