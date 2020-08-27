@@ -47,6 +47,10 @@ public class PokerHands {
         result = judgePair(pokers, pokers1);
         if (result != null) return result;
 
+        return judgeHighCard(poker1, poker2);
+    }
+
+    private int judgeHighCard(Poker poker1, Poker poker2) {
         if (poker1.getValue() == poker2.getValue()) {
             return poker1.getCharacter() - poker2.getCharacter();
         }
