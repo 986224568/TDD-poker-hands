@@ -22,10 +22,14 @@ public class PokerHands {
     private int compare(List<Poker> pokers, List<Poker> pokers1) {
         Collections.sort(pokers);
         Collections.sort(pokers1);
-        Poker poker1 = pokers.get(0);
-        Poker poker2 = pokers1.get(0);
+
         Integer result = null;
 
+        return gameJudge(pokers, pokers1);
+    }
+
+    private int gameJudge(List<Poker> pokers, List<Poker> pokers1) {
+        Integer result;
         result = judgeStraightFlush(pokers, pokers1);
         if (result != null) return result;
 
@@ -47,10 +51,12 @@ public class PokerHands {
         result = judgePair(pokers, pokers1);
         if (result != null) return result;
 
-        return judgeHighCard(poker1, poker2);
+        return judgeHighCard(pokers, pokers1);
     }
 
-    private int judgeHighCard(Poker poker1, Poker poker2) {
+    private int judgeHighCard(List<Poker> pokers, List<Poker> pokers1) {
+        Poker poker1 = pokers.get(0);
+        Poker poker2 = pokers1.get(0);
         if (poker1.getValue() == poker2.getValue()) {
             return poker1.getCharacter() - poker2.getCharacter();
         }
