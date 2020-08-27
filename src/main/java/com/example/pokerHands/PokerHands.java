@@ -24,36 +24,16 @@ public class PokerHands {
         Collections.sort(pokers1);
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
+        Integer result = null;
 
-        if(getStraightValue(pokers) != -1 && getStraightFlushValue(pokers1) != -1) {
-            return getStraightValue(pokers) > getStraightFlushValue(pokers1) ? 1 : -1;
-        }
+        result = judgeStraightFlush(pokers, pokers1);
+        if (result != null) return result;
 
-        if (getStraightFlushValue(pokers) != -1) {
-            return 1;
-        } else if (getStraightFlushValue(pokers1) != -1) {
-            return -1;
-        }
+        result = judgeFourOfKind(pokers, pokers1);
+        if (result != null) return result;
 
-        if (getFourOfKindNumber(pokers) != -1 && getFourOfKindNumber(pokers1) != -1) {
-            return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
-        }
-
-        if (getFourOfKindNumber(pokers) != -1) {
-            return 1;
-        } else if (getFourOfKindNumber(pokers1) != -1) {
-            return -1;
-        }
-
-        if (getFullHouse(pokers) != -1 && getFullHouse(pokers1) != -1) {
-            return getFullHouse(pokers) > getFullHouse(pokers1) ? 1 : -1;
-        }
-
-        if (getFullHouse(pokers) != -1) {
-            return 1;
-        } else if (getFullHouse(pokers1) != -1) {
-            return -1;
-        }
+        result = judgeFullHouse(pokers, pokers1);
+        if (result != null) return result;
 
         if (getFlushValue(pokers) != -1 && getFlushValue(pokers1) != -1) {
             return getFlushValue(pokers) > getFlushValue(pokers1) ? 1 : -1;
@@ -98,6 +78,45 @@ public class PokerHands {
             return poker1.getCharacter() - poker2.getCharacter();
         }
         return poker1.getValue() - poker2.getValue();
+    }
+
+    private Integer judgeFullHouse(List<Poker> pokers, List<Poker> pokers1) {
+        if (getFullHouse(pokers) != -1 && getFullHouse(pokers1) != -1) {
+            return getFullHouse(pokers) > getFullHouse(pokers1) ? 1 : -1;
+        }
+
+        if (getFullHouse(pokers) != -1) {
+            return 1;
+        } else if (getFullHouse(pokers1) != -1) {
+            return -1;
+        }
+        return null;
+    }
+
+    private Integer judgeFourOfKind(List<Poker> pokers, List<Poker> pokers1) {
+        if (getFourOfKindNumber(pokers) != -1 && getFourOfKindNumber(pokers1) != -1) {
+            return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
+        }
+
+        if (getFourOfKindNumber(pokers) != -1) {
+            return 1;
+        } else if (getFourOfKindNumber(pokers1) != -1) {
+            return -1;
+        }
+        return null;
+    }
+
+    private Integer judgeStraightFlush(List<Poker> pokers, List<Poker> pokers1) {
+        if(getStraightFlushValue(pokers) != -1 && getStraightFlushValue(pokers1) != -1) {
+            return getStraightValue(pokers) > getStraightFlushValue(pokers1) ? 1 : -1;
+        }
+
+        if (getStraightFlushValue(pokers) != -1) {
+            return 1;
+        } else if (getStraightFlushValue(pokers1) != -1) {
+            return -1;
+        }
+        return null;
     }
 
     private static int getPairNumbers(List<Poker> pokers) {
