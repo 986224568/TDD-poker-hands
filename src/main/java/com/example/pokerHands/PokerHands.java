@@ -35,15 +35,8 @@ public class PokerHands {
         result = judgeFullHouse(pokers, pokers1);
         if (result != null) return result;
 
-        if (getFlushValue(pokers) != -1 && getFlushValue(pokers1) != -1) {
-            return getFlushValue(pokers) > getFlushValue(pokers1) ? 1 : -1;
-        }
-
-        if (getFlushValue(pokers) != -1) {
-            return 1;
-        } else if (getFlushValue(pokers1) != -1) {
-            return -1;
-        }
+        result = judgeFlush(pokers, pokers1);
+        if (result != null) return result;
 
         if (getStraightValue(pokers) != -1 && getStraightValue(pokers1) != -1) {
             return getStraightValue(pokers) > getStraightValue(pokers1) ? 1 : -1;
@@ -78,6 +71,19 @@ public class PokerHands {
             return poker1.getCharacter() - poker2.getCharacter();
         }
         return poker1.getValue() - poker2.getValue();
+    }
+
+    private Integer judgeFlush(List<Poker> pokers, List<Poker> pokers1) {
+        if (getFlushValue(pokers) != -1 && getFlushValue(pokers1) != -1) {
+            return getFlushValue(pokers) > getFlushValue(pokers1) ? 1 : -1;
+        }
+
+        if (getFlushValue(pokers) != -1) {
+            return 1;
+        } else if (getFlushValue(pokers1) != -1) {
+            return -1;
+        }
+        return null;
     }
 
     private Integer judgeFullHouse(List<Poker> pokers, List<Poker> pokers1) {
