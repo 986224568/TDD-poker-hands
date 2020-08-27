@@ -35,6 +35,12 @@ public class PokerHands {
             return -1;
         }
 
+        if (getFullHouse(pokers) != -1) {
+            return 1;
+        } else if (getFullHouse(pokers1) != -1) {
+            return -1;
+        }
+
         if (getFlushValue(pokers) != -1 && getFlushValue(pokers1) != -1) {
             return getFlushValue(pokers) > getFlushValue(pokers1) ? 1 : -1;
         }
@@ -152,5 +158,19 @@ public class PokerHands {
             }
         }
         return pokers.get(0).getValue();
+    }
+
+    private static int getFullHouse(List<Poker> pokers) {
+        Collections.sort(pokers);
+        Map<Poker, Integer> map = new HashMap<>();
+        for (Poker poker : pokers) {
+            map.put(poker, map.getOrDefault(poker, 0) + 1);
+        }
+        for (Poker poker : pokers) {
+            if (map.get(poker) == 3 && map.keySet().size() == 2) {
+                return poker.getValue();
+            }
+        }
+        return -1;
     }
 }
