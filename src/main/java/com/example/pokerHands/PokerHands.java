@@ -6,11 +6,7 @@ import java.util.*;
 public class PokerHands {
 
     public int play(String[] play1, String[] play2) {
-        if (compare(getPokerList(play1), getPokerList(play2)) > 0) {
-            return 1;
-        } else {
-            return 2;
-        }
+        return compare(getPokerList(play1), getPokerList(play2)) > 0 ? 1 : 2;
     }
 
     private static List<Poker> getPokerList(String[] pokerStr) {
@@ -22,9 +18,6 @@ public class PokerHands {
     private int compare(List<Poker> pokers, List<Poker> pokers1) {
         Collections.sort(pokers);
         Collections.sort(pokers1);
-
-        Integer result = null;
-
         return gameJudge(pokers, pokers1);
     }
 
