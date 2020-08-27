@@ -25,6 +25,12 @@ public class PokerHands {
         Poker poker1 = pokers.get(0);
         Poker poker2 = pokers1.get(0);
 
+        if (getStraightFlushValue(pokers) != -1) {
+            return 1;
+        } else if (getStraightFlushValue(pokers1) != -1) {
+            return -1;
+        }
+
         if (getFourOfKindNumber(pokers) != -1 && getFourOfKindNumber(pokers1) != -1) {
             return getThreeOfKindValue(pokers) > getThreeOfKindValue(pokers1) ? 1 : -1;
         }
@@ -174,6 +180,14 @@ public class PokerHands {
             if (map.get(poker) == 3 && map.keySet().size() == 2) {
                 return poker.getValue();
             }
+        }
+        return -1;
+    }
+
+    private static int getStraightFlushValue(List<Poker> pokers) {
+        Collections.sort(pokers);
+        if (getFlushValue(pokers) != -1 && getStraightValue(pokers) != -1) {
+            return pokers.get(0).getValue();
         }
         return -1;
     }
