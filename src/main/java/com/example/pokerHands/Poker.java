@@ -14,9 +14,14 @@ public class Poker implements Comparable<Poker> {
 
     public Poker(String pokerName) {
         this.pokerName = pokerName;
-        this.character = CharacterEnum.valueOf(pokerName.charAt(1) + "").getPriority();
-        this.value = Character.isDigit(pokerName.charAt(0)) ? Integer.parseInt(pokerName.charAt(0) + "")
-                : CardEnum.valueOf(pokerName.charAt(0) + "").getPriority();
+        if (pokerName.length() == 2) {
+            this.character = CharacterEnum.valueOf(pokerName.charAt(1) + "").getPriority();
+            this.value = Character.isDigit(pokerName.charAt(0)) ? Integer.parseInt(pokerName.charAt(0) + "")
+                    : CardEnum.valueOf(pokerName.charAt(0) + "").getPriority();
+        } else if (pokerName.length() == 3) {
+            this.character = CharacterEnum.valueOf(pokerName.charAt(2) + "").getPriority();
+            this.value = 10;
+        }
     }
 
     @Override

@@ -16,12 +16,12 @@ public class PokerHands {
     }
 
     private int compare(List<Poker> pokers, List<Poker> pokers1) {
-        Collections.sort(pokers);
-        Collections.sort(pokers1);
         return gameJudge(pokers, pokers1);
     }
 
     private int gameJudge(List<Poker> pokers, List<Poker> pokers1) {
+        Collections.sort(pokers);
+        Collections.sort(pokers1);
         Integer result;
         result = judgeStraightFlush(pokers, pokers1);
         if (result != null) return result;
